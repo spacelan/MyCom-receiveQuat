@@ -41,7 +41,7 @@ protected:
     GLfloat rQuad;
     QTimer *myTimer;
     GLfloat xRot,yRot,zRot;
-    GLuint texture;
+    GLuint texture[2];
 
 public slots:
     void quatToMatrix(float w, float x, float y, float z);

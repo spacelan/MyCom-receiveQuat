@@ -29,3 +29,6 @@ HEADERS  += widget.h \
 
 FORMS    += widget.ui \
     nehewidget/nehewidget.ui
+
+RESOURCES += \
+    nehewidget/image.qrc

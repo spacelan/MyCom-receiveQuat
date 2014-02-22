@@ -45,6 +45,7 @@ private:
     handleserialdata *mySerialData;
     NeHeWidget w;
     bool isGLOpened;
+    bool isRun;
 
 private slots:
     void mySetText(float &w,float &x,float &y,float &z,float &pitch,float &roll,float &yaw);

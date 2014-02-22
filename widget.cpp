@@ -11,6 +11,7 @@ Widget::Widget(QWidget *parent) :
     globalInit();
     myCom = NULL;
     isFirst = true;
+    isRun = false;
     ui->recieveTextBrowser->setOpenLinks(false);
     connect(ui->recieveTextBrowser, SIGNAL(anchorClicked(const QUrl&)),this, SLOT(anchorClickedSlot(const QUrl&)));
 
@@ -249,6 +250,13 @@ void Widget::on_clearbtn_clicked()
 
 void Widget::on_restartBtn_clicked()
 {
+    isRun = true;
+    on_runpauseBtn_clicked();
+    //延个时
+    QEventLoop myLoop;
+    QTimer::singleShot(10,&myLoop,SLOT(quit()));
+    myLoop.exec();
+
     QByteArray buf;
     buf[0] = 's'; //buf[1] = 0x55; buf[2] = 0x01; buf[3] = myDataType_Restart;
     myCom->write(buf);
@@ -256,21 +264,20 @@ void Widget::on_restartBtn_clicked()
 
 void Widget::on_runpauseBtn_clicked()
 {
-    static bool run = false;
     QByteArray buf;
-    if(run)
+    if(isRun)
     {
         buf[0] = 'p'; //buf[1] = 0x55; buf[2] = 0x01; buf[3] = myDataType_Pause;
         myCom->write(buf);
         ui->runpauseBtn->setText("run");
-        run = false;
+        isRun = false;
     }
     else
     {
         buf[0] = 'r'; //buf[1] = 0x55; buf[2] = 0x01; buf[3] = myDataType_Run;
         myCom->write(buf);
         ui->runpauseBtn->setText("pause");
-        run = true;
+        isRun = true;
     }
 }
 
