@@ -5,4 +5,6 @@
 下位机在这里
 --
 [https://github.com/spacelan/MPU6050ForStm32](https://github.com/spacelan/MPU6050ForStm32)<br />  
-
+渣像素
+--
+![github](https://github.com/spacelan/MyCom-receiveQuat/raw/master/IMG_20140222_113035.jpg "github")
